@@ -13,10 +13,6 @@ export default function Home() {
 
       <main className="container">
         <div className="row justify-content-center text-center">
-          <h1 className="h2 mt-0 mb-4">
-            Welcome back commander!
-          </h1>
-
           <div className="col-md-8">
             <div className="row justify-content-center">
               <div className="col-sm-6 col-md-5 col-lg-4">
