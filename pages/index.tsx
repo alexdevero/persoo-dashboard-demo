@@ -16,13 +16,13 @@ export default function Home() {
           <div className="col-md-8">
             <div className="row justify-content-center">
               <div className="col-sm-6 col-md-5 col-lg-4">
-                <Link href="/login" className={styles.card}>
+                <Link href="/login">
                   Login &rarr;
                 </Link>
               </div>
 
               <div className="col-sm-6 col-md-5 col-lg-4">
-                <Link href="/editor" className={styles.card}>
+                <Link href="/editor">
                   Open Monaco editor &rarr;
                 </Link>
               </div>

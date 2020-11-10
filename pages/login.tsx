@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Router from 'next/router'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -16,7 +16,7 @@ export default function Login() {
   //   "passwordHash":"d41d8cd98f00b204e9800998ecf8427e" // empty pass hash
   // }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
     console.log(email, password)
