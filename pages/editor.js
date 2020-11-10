@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Editor from '@monaco-editor/react'
 
 export default function Monaco() {
