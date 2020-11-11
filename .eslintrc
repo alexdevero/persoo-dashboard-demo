@@ -4,11 +4,8 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "ecmaFeatures": {
-    "jsx": true
-  },
   "plugins": [
-    "@typescript-eslint",
+    // "@typescript-eslint",
     "import",
     // "node",
     // "promise",
@@ -219,7 +216,7 @@
     "react/prefer-es6-class": "error",
     "react/prefer-stateless-function": ["error", { "ignorePureComponents": true }],
     // "react/prop-types": "error",
-    "react/react-in-jsx-scope": "error",
+    // "react/react-in-jsx-scope": "error",
     // "react/require-default-props": "error",
     // "react/require-optimization": "error",
     "react/require-render-return": "error",
@@ -257,7 +254,7 @@
     "react/jsx-props-no-multi-spaces": "error",
     "react/jsx-sort-default-props": "error",
     "react/jsx-sort-props": ["error", { "callbacksLast": true, "shorthandFirst": true, "noSortAlphabetically" : true, "reservedFirst": true }],
-    "react/jsx-space-before-closing": "error",
+    "react/jsx-tag-spacing": "error",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
 
