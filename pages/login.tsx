@@ -19,6 +19,8 @@ export default function Login() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
+    // TODO: Move this on the server
+    // TODO: Add sanitization for inputs
     console.log(email, password)
     if (email === 'toor' && password === 'root') {
       setIsErrorMessageVisible(false)
@@ -27,7 +29,7 @@ export default function Login() {
       // axios
         // .post('https://adminapi.persoo.cz/login', {
         //   email:'alexdevero@seznam.cz',
-        //   passwordHash:'alexpersonalizuje'
+        //   passwordHash:''
         // })
         // .then(res => console.log(res))
         // .catch(err => console.log('error: ', err))
