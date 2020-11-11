@@ -3,19 +3,13 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Router from 'next/router'
 import sanitizeHtml from 'sanitize-html'
+import md5 from 'blueimp-md5'
 // import axios from 'axios'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isErrorMessageVisible, setIsErrorMessageVisible] = useState(false)
-
-  // Login POST request
-  // URL: https://adminapi.persoo.cz/login
-  // {
-  //   "email":"",
-  //   "passwordHash":""
-  // }
 
   const handleInput = (event: React.FormEvent<HTMLInputElement>, inputType: 'email' | 'password') => {
     const newValue = sanitizeHtml(event.currentTarget.value)
@@ -32,8 +26,14 @@ export default function Login() {
 
     // TODO: Move this on the server
     // TODO: Add sanitization for inputs
-    console.log(email, password)
+    console.log(email, md5(password))
     if (email === 'toor' && password === 'root') {
+    // Login POST request
+    // URL: https://adminapi.persoo.cz/login
+    // {
+    //   "email":"",
+    //   "passwordHash":""
+    // }
       setIsErrorMessageVisible(false)
 
       Router.push('/dashboard')
