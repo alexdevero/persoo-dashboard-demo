@@ -1,15 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Router from 'next/router'
 import sanitizeHtml from 'sanitize-html'
 import md5 from 'blueimp-md5'
-import axios from 'axios'
+// import axios from 'axios'
+
+import { cookieToken } from './../credentials/credentials'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isErrorMessageVisible, setIsErrorMessageVisible] = useState(false)
+
+  const setCookie = () => {
+    document.cookie = cookieToken
+  }
+
+  useEffect(() => {
+    setCookie()
+  }, [])
 
   const handleInput = (event: React.FormEvent<HTMLInputElement>, inputType: 'email' | 'password') => {
     const newValue = sanitizeHtml(event.currentTarget.value)
@@ -42,6 +52,9 @@ export default function Login() {
         //   .post('https://adminapi.persoo.cz/login', {
         //     email: email,
         //     passwordHash: password
+        //   }, {
+        //     headers: {Authorization: `Bearer ${cookieToken}`},
+        //     withCredentials: true
         //   })
         //   .then(res => console.log(res))
         //   .catch(err => console.log('error: ', err))
