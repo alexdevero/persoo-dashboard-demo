@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Router from 'next/router'
+import sanitizeHtml from 'sanitize-html'
 // import axios from 'axios'
 
 export default function Login() {
@@ -12,9 +13,19 @@ export default function Login() {
   // Login POST request
   // URL: https://adminapi.persoo.cz/login
   // {
-  //   "email":"alexdevero@seznam.cz",
-  //   "passwordHash":"d41d8cd98f00b204e9800998ecf8427e" // empty pass hash
+  //   "email":"",
+  //   "passwordHash":""
   // }
+
+  const handleInput = (event: React.FormEvent<HTMLInputElement>, inputType: 'email' | 'password') => {
+    const newValue = sanitizeHtml(event.currentTarget.value)
+
+    if (inputType === 'email') {
+      setEmail(newValue)
+    } else {
+      setPassword(newValue)
+    }
+  }
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
@@ -59,7 +70,7 @@ export default function Login() {
                       className="form-control"
                       id="loginEmail"
                       value={email}
-                      onChange={(event) => setEmail(event.target.value)}
+                      onChange={(event) => handleInput(event, 'email')}
                     />
                   </div>
 
@@ -71,7 +82,7 @@ export default function Login() {
                       className="form-control"
                       id="loginPassword"
                       value={password}
-                      onChange={(event) => setPassword(event.target.value)}
+                      onChange={(event) => handleInput(event, 'password')}
                     />
                   </div>
 
