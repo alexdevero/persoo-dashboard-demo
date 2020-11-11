@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import sanitizeHtml from 'sanitize-html'
 import md5 from 'blueimp-md5'
-// import axios from 'axios'
+import axios from 'axios'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -27,23 +27,27 @@ export default function Login() {
     // TODO: Move this on the server
     // TODO: Add sanitization for inputs
     console.log(email, md5(password))
-    if (email === 'toor' && password === 'root') {
-    // Login POST request
-    // URL: https://adminapi.persoo.cz/login
-    // {
-    //   "email":"",
-    //   "passwordHash":""
-    // }
-      setIsErrorMessageVisible(false)
+    if (email.length > 1 && password.length > 1) {
+      if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+        // Login POST request
+        // URL: https://adminapi.persoo.cz/login
+        // {
+        //   "email":"",
+        //   "passwordHash":""
+        // }
+        setIsErrorMessageVisible(false)
 
-      Router.push('/dashboard')
-      // axios
-        // .post('https://adminapi.persoo.cz/login', {
-        //   email:'alexdevero@seznam.cz',
-        //   passwordHash:''
-        // })
-        // .then(res => console.log(res))
-        // .catch(err => console.log('error: ', err))
+        Router.push('/dashboard')
+        // axios
+        //   .post('https://adminapi.persoo.cz/login', {
+        //     email: email,
+        //     passwordHash: password
+        //   })
+        //   .then(res => console.log(res))
+        //   .catch(err => console.log('error: ', err))
+      } else {
+        console.log('Email is not valid')
+      }
     } else {
       setIsErrorMessageVisible(true)
     }
