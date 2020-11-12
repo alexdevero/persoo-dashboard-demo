@@ -2,7 +2,7 @@
 
 import { login, pass } from './../../credentials/credentials'
 
-export default (req, res) => {
+export default async (req, res) => {
   const email = req.body.email
   const passwordHash = req.body.passwordHash
 
