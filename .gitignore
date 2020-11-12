@@ -33,3 +33,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# confidential files
+credentials/credentials.ts
