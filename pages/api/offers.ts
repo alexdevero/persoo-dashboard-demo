@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from 'axios'
 
-import { email, pass, cookieToken, persooOffersEndpoint } from './../../credentials/credentials'
+import { cookieToken, persooOffersEndpoint } from './../../credentials/credentials'
 
 export default async (req, res) => {
   const data = await axios.get(persooOffersEndpoint, {
