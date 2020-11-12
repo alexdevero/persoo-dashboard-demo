@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Router from 'next/router'
 import sanitizeHtml from 'sanitize-html'
 import md5 from 'blueimp-md5'
-// import axios from 'axios'
+import axios from 'axios'
 
 import { cookieToken } from './../credentials/credentials'
+import Axios from 'axios'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -47,7 +48,18 @@ export default function Login() {
         // }
         setIsErrorMessageVisible(false)
 
-        Router.push('/dashboard')
+        axios
+          .post('/api/login', {
+            email: email,
+            passwordHash: password
+          })
+          .then(res => {
+            console.log(res.data.message)
+
+            Router.push('/dashboard')
+          })
+          .catch(err => console.log('error: ', err))
+
         // axios
         //   .post('https://adminapi.persoo.cz/login', {
         //     email: email,
@@ -109,17 +121,21 @@ export default function Login() {
                     <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
                   </div>
 
-                  {isErrorMessageVisible && <div className="text-danger mb-3">
-                    <small>Sorry dude. Try guessing again.</small>
-                  </div>}
+                  {isErrorMessageVisible && (
+                    <div className="text-danger mb-3">
+                      <small>Sorry dude. Try guessing again.</small>
+                    </div>
+                  )}
 
-                  <button onClick={handleSubmit} type="submit" className="btn btn-primary">Login</button>
+                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
                 </form>
               </div>
             </div>
 
             <div className="text-center mt-3">
-              <Link href="/"><a className="text-underline">&larr; Back home</a></Link>
+              <Link href="/">
+                <a className="text-underline">&larr; Back home</a>
+              </Link>
             </div>
           </div>
         </div>
