@@ -7,7 +7,6 @@ import md5 from 'blueimp-md5'
 import axios from 'axios'
 
 import { cookieToken } from './../credentials/credentials'
-import Axios from 'axios'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -34,6 +33,10 @@ export default function Login() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
+
+    axios
+      .get('/api/offers')
+      .then(res => console.log(res))
 
     // TODO: Move this on the server
     // TODO: Add sanitization for inputs
@@ -88,11 +91,21 @@ export default function Login() {
       <div className="container">
         <div className="row justify-content-center align-items-center">
           <div className="col-md-8 col-lg-6">
-            <div className="card">
-              <div className="card-body">
+            <div className="card shadow-sm">
+              <div className="card-body py-4">
+                <img
+                  className="d-block mb-4 mx-auto"
+                  width="100"
+                  height="100"
+                  src={require('./../public/persoo-logo-color.svg')}
+                  alt="Persoo logo"
+                />
+
+                <h1 className="h4 text-center mb-4">Welcome to Persoo Admin</h1>
+
                 <form>
                   <div className="form-group">
-                    <label htmlFor="loginEmail">Email:</label>
+                    <label htmlFor="loginEmail" style={{ fontSize: 14 }}>Email:</label>
 
                     <input
                       type="email"
@@ -104,7 +117,7 @@ export default function Login() {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="loginPassword">Password:</label>
+                    <label htmlFor="loginPassword" style={{ fontSize: 14 }}>Password:</label>
 
                     <input
                       type="password"
@@ -116,7 +129,7 @@ export default function Login() {
                   </div>
 
                   <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                    <input style={{ marginTop: 6 }} type="checkbox" className="form-check-input" id="exampleCheck1" />
 
                     <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
                   </div>
@@ -127,14 +140,14 @@ export default function Login() {
                     </div>
                   )}
 
-                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
+                  <button type="submit" className="btn btn-primary w-100" onClick={handleSubmit}>Login</button>
                 </form>
               </div>
             </div>
 
             <div className="text-center mt-3">
               <Link href="/">
-                <a className="text-underline">&larr; Back home</a>
+                <a className="text-underline" style={{ fontSize: 14, color: '#999' }}>&larr; Back home</a>
               </Link>
             </div>
           </div>
