@@ -45,10 +45,7 @@ export default function Login() {
     // TODO: Move this on the server
     // TODO: Add sanitization for inputs
     console.log(email, md5(password))
-    if (email.length > 1 && password.length > 1) {
-      setIsEmailWrong(false)
-      setIsPassWrong(false)
-
+    if (email.length > 0 && password.length > 0) {
       if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
         // Login POST request
         // URL: https://adminapi.persoo.cz/login
@@ -84,6 +81,18 @@ export default function Login() {
         //   .catch(err => console.log('error: ', err))
       } else {
         console.log('Email is not valid')
+      }
+    } else if (email.length > 0 || password.length > 0) {
+      if (email.length > 0) {
+        setIsEmailWrong(false)
+      } else {
+        setIsEmailWrong(true)
+      }
+
+      if (password.length > 0) {
+        setIsPassWrong(false)
+      } else {
+        setIsPassWrong(true)
       }
     } else {
       setIsEmailWrong(true)
