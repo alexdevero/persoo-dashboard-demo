@@ -1,10 +1,10 @@
-import { createContext, useState } from 'react'
+import React, { createContext, useState } from 'react'
 
 interface appStateUI {
-  children: React.Children
+  children: React.ReactNode;
 }
 
-export const appState = createContext({
+export const AppState = createContext({
   username: '',
   lastActive: '',
   isDarkModeOn: false,
@@ -30,8 +30,8 @@ export function AppStateProvider(props: appStateUI) {
   }
 
   return (
-    <AppStateProvider value={{ appState, handleAppStateChange }}>
+    <AppState.Provider value={{ appState, handleAppStateChange }}>
       {props.children}
-    </AppStateProvider>
+    </AppState.Provider>
   )
 }
