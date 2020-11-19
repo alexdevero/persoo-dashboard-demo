@@ -12,6 +12,8 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isErrorMessageVisible, setIsErrorMessageVisible] = useState(false)
+  const [isEmailWrong, setIsEmailWrong] = useState(false)
+  const [isPassWrong, setIsPassWrong] = useState(false)
 
   const setCookie = () => {
     document.cookie = cookieToken
@@ -42,6 +44,9 @@ export default function Login() {
     // TODO: Add sanitization for inputs
     console.log(email, md5(password))
     if (email.length > 1 && password.length > 1) {
+      setIsEmailWrong(false)
+      setIsPassWrong(false)
+
       if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
         // Login POST request
         // URL: https://adminapi.persoo.cz/login
@@ -50,6 +55,8 @@ export default function Login() {
         //   "passwordHash":""
         // }
         setIsErrorMessageVisible(false)
+        setIsEmailWrong(false)
+        setIsPassWrong(false)
 
         axios
           .post('/api/login', {
@@ -77,6 +84,8 @@ export default function Login() {
         console.log('Email is not valid')
       }
     } else {
+      setIsEmailWrong(true)
+      setIsPassWrong(true)
       setIsErrorMessageVisible(true)
     }
   }
@@ -109,7 +118,7 @@ export default function Login() {
 
                     <input
                       type="email"
-                      className="form-control"
+                      className={`form-control ${isEmailWrong ? 'is-invalid' : ''}`}
                       id="loginEmail"
                       value={email}
                       onChange={(event) => handleInput(event, 'email')}
@@ -121,7 +130,7 @@ export default function Login() {
 
                     <input
                       type="password"
-                      className="form-control"
+                      className={`form-control ${isPassWrong ? 'is-invalid' : ''}`}
                       id="loginPassword"
                       value={password}
                       autoComplete="on"
