@@ -8,6 +8,8 @@ import axios from 'axios'
 
 import { cookieToken } from './../credentials/credentials'
 
+import { PageWrapper } from './../components/page-wrapper'
+
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -91,78 +93,80 @@ export default function Login() {
   }
 
   return (
-    <div className="d-flex align-items-center">
-      <Head>
-        <title>Login</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <PageWrapper>
+      <div className="d-flex align-items-center">
+        <Head>
+          <title>Login</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <div className="container">
-        <div className="row justify-content-center align-items-center">
-          <div className="col-md-8 col-lg-6 col-xl-5">
-            <div className="card shadow-sm">
-              <div className="card-body py-4">
-                <img
-                  className="d-block mb-4 mx-auto"
-                  width="100"
-                  height="100"
-                  src={require('./../public/persoo-logo-color.svg')}
-                  alt="Persoo logo"
-                />
+        <div className="container">
+          <div className="row justify-content-center align-items-center">
+            <div className="col-md-8 col-lg-6 col-xl-5">
+              <div className="card shadow-sm">
+                <div className="card-body py-4">
+                  <img
+                    className="d-block mb-4 mx-auto"
+                    width="100"
+                    height="100"
+                    src={require('./../public/persoo-logo-color.svg')}
+                    alt="Persoo logo"
+                  />
 
-                <h1 className="h4 text-center mb-4">Login to Persoo Admin</h1>
+                  <h1 className="h4 text-center mb-4">Login to Persoo Admin</h1>
 
-                <form>
-                  <div className="form-group">
-                    <label htmlFor="loginEmail" className="font-14 text-muted">Email:</label>
+                  <form>
+                    <div className="form-group">
+                      <label htmlFor="loginEmail" className="font-14 text-muted">Email:</label>
 
-                    <input
-                      type="email"
-                      className={`form-control ${isEmailWrong ? 'is-invalid' : ''}`}
-                      id="loginEmail"
-                      value={email}
-                      onChange={(event) => handleInput(event, 'email')}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="loginPassword" className="font-14 text-muted">Password:</label>
-
-                    <input
-                      type="password"
-                      className={`form-control ${isPassWrong ? 'is-invalid' : ''}`}
-                      id="loginPassword"
-                      value={password}
-                      autoComplete="on"
-                      onChange={(event) => handleInput(event, 'password')}
-                    />
-                  </div>
-
-                  <div className="form-group form-check">
-                    <input style={{ marginTop: 6 }} type="checkbox" className="form-check-input" id="exampleCheck1" />
-
-                    <label className="form-check-label font-14 text-muted" htmlFor="exampleCheck1">Remember me</label>
-                  </div>
-
-                  {isErrorMessageVisible && (
-                    <div className="text-danger mb-3">
-                      <small>Sorry dude. Try guessing again.</small>
+                      <input
+                        type="email"
+                        className={`form-control ${isEmailWrong ? 'is-invalid' : ''}`}
+                        id="loginEmail"
+                        value={email}
+                        onChange={(event) => handleInput(event, 'email')}
+                      />
                     </div>
-                  )}
 
-                  <button type="submit" className="btn btn-primary w-100 font-14 font-weight-bold p-2" onClick={handleSubmit}>Login</button>
-                </form>
+                    <div className="form-group">
+                      <label htmlFor="loginPassword" className="font-14 text-muted">Password:</label>
+
+                      <input
+                        type="password"
+                        className={`form-control ${isPassWrong ? 'is-invalid' : ''}`}
+                        id="loginPassword"
+                        value={password}
+                        autoComplete="on"
+                        onChange={(event) => handleInput(event, 'password')}
+                      />
+                    </div>
+
+                    <div className="form-group form-check">
+                      <input style={{ marginTop: 6 }} type="checkbox" className="form-check-input" id="exampleCheck1" />
+
+                      <label className="form-check-label font-14 text-muted" htmlFor="exampleCheck1">Remember me</label>
+                    </div>
+
+                    {isErrorMessageVisible && (
+                      <div className="text-danger mb-3">
+                        <small>Sorry dude. Try guessing again.</small>
+                      </div>
+                    )}
+
+                    <button type="submit" className="btn btn-primary w-100 font-14 font-weight-bold p-2" onClick={handleSubmit}>Login</button>
+                  </form>
+                </div>
               </div>
-            </div>
 
-            <div className="text-center mt-3">
-              <Link href="/">
-                <a className="text-underline" style={{ fontSize: 14, color: '#999' }}>&larr; Back home</a>
-              </Link>
+              <div className="text-center mt-3">
+                <Link href="/">
+                  <a className="text-underline" style={{ fontSize: 14, color: '#999' }}>&larr; Back home</a>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   )
 }
