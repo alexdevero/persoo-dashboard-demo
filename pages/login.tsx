@@ -90,7 +90,7 @@ export default function Login() {
 
       <div className="container">
         <div className="row justify-content-center align-items-center">
-          <div className="col-md-8 col-lg-6">
+          <div className="col-md-8 col-lg-6 col-xl-5">
             <div className="card shadow-sm">
               <div className="card-body py-4">
                 <img
@@ -101,11 +101,11 @@ export default function Login() {
                   alt="Persoo logo"
                 />
 
-                <h1 className="h4 text-center mb-4">Welcome to Persoo Admin</h1>
+                <h1 className="h4 text-center mb-4">Login to Persoo Admin</h1>
 
                 <form>
                   <div className="form-group">
-                    <label htmlFor="loginEmail" style={{ fontSize: 14 }}>Email:</label>
+                    <label htmlFor="loginEmail" className="font-14 text-muted">Email:</label>
 
                     <input
                       type="email"
@@ -117,13 +117,14 @@ export default function Login() {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="loginPassword" style={{ fontSize: 14 }}>Password:</label>
+                    <label htmlFor="loginPassword" className="font-14 text-muted">Password:</label>
 
                     <input
                       type="password"
                       className="form-control"
                       id="loginPassword"
                       value={password}
+                      autoComplete="on"
                       onChange={(event) => handleInput(event, 'password')}
                     />
                   </div>
@@ -131,7 +132,7 @@ export default function Login() {
                   <div className="form-group form-check">
                     <input style={{ marginTop: 6 }} type="checkbox" className="form-check-input" id="exampleCheck1" />
 
-                    <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
+                    <label className="form-check-label font-14 text-muted" htmlFor="exampleCheck1">Remember me</label>
                   </div>
 
                   {isErrorMessageVisible && (
@@ -140,7 +141,7 @@ export default function Login() {
                     </div>
                   )}
 
-                  <button type="submit" className="btn btn-primary w-100" onClick={handleSubmit}>Login</button>
+                  <button type="submit" className="btn btn-primary w-100 font-14 font-weight-bold p-2" onClick={handleSubmit}>Login</button>
                 </form>
               </div>
             </div>
