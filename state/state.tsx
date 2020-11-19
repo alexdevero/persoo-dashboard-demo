@@ -7,7 +7,9 @@ interface appStateUI {
 export const appState = createContext({
   username: '',
   lastActive: '',
-  darkMode: 'off',
+  isDarkModeOn: false,
+  isUserLoggedIn: false,
+  isNavCollapsed: false,
   handleAppStateChange: () => {}
 })
 
@@ -15,7 +17,9 @@ export function AppStateProvider(props: appStateUI) {
   const [appState, setAppState] = useState({
     username: '',
     lastActive: '',
-    darkMode: 'off',
+    isDarkModeOn: false,
+    isUserLoggedIn: false,
+    isNavCollapsed: false
   })
 
   const handleAppStateChange = (prop: 'username' | 'lastActive' | 'darkMode', value: String) => {
