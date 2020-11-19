@@ -11,7 +11,9 @@ html {
 
 body,
 #__next,
-#__next > div {
+#__next > div,
+.page-wrapper,
+.page-wrapper > div {
   min-height: 100vh;
 }
 
