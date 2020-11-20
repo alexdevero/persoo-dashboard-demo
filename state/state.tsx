@@ -21,6 +21,38 @@ const initialGlobalState = {
   isNavCollapsed: false
 }
 
+function reducer(state, action) {
+  switch (action.type) {
+    case 'username':
+      return {
+        ...state,
+        username: action.value
+      }
+    case 'lastActive':
+      return {
+        ...state,
+        lastActive: action.value
+      }
+    case 'isDarkModeOn':
+      return {
+        ...state,
+        isDarkModeOn: action.value
+      }
+    case 'isUserLoggedIn':
+      return {
+        ...state,
+        isUserLoggedIn: action.value
+      }
+    case 'isNavCollapsed':
+      return {
+        ...state,
+        isNavCollapsed: action.value
+      }
+    default:
+      return state
+  }
+}
+
 
   const handleAppStateChange = (prop: 'username' | 'lastActive' | 'darkMode', value: String) => {
     setAppState({
