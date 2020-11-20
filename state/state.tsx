@@ -13,14 +13,14 @@ export const AppState = createContext({
   handleAppStateChange: () => {}
 })
 
-export function AppStateProvider(props: appStateUI) {
-  const [appState, setAppState] = useState({
-    username: '',
-    lastActive: '',
-    isDarkModeOn: false,
-    isUserLoggedIn: false,
-    isNavCollapsed: false
-  })
+const initialGlobalState = {
+  username: '',
+  lastActive: '',
+  isDarkModeOn: false,
+  isUserLoggedIn: false,
+  isNavCollapsed: false
+}
+
 
   const handleAppStateChange = (prop: 'username' | 'lastActive' | 'darkMode', value: String) => {
     setAppState({
