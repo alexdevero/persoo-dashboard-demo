@@ -17,27 +17,27 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   console.log(action)
   switch (action.type) {
-    case 'username':
+    case 'SET_USERNAME':
       return {
         ...state,
         username: action.payload
       }
-    case 'lastActive':
+    case 'SET_LAST_ACTIVE':
       return {
         ...state,
         lastActive: action.payload
       }
-    case 'isDarkModeOn':
+    case 'SET_DARK_MODE':
       return {
         ...state,
         isDarkModeOn: action.payload
       }
-    case 'isUserLoggedIn':
+    case 'SET_USER_LOGGED':
       return {
         ...state,
         isUserLoggedIn: action.payload
       }
-    case 'isNavCollapsed':
+    case 'SET_NAV_COLLAPSED':
       return {
         ...state,
         isNavCollapsed: action.payload
