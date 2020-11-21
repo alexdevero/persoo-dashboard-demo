@@ -65,9 +65,17 @@ export default function Login() {
             passwordHash: password
           })
           .then(res => {
+            const date = new Date()
+            const day = String(date.getDate()).padStart(2, '0')
+            const month = String(date.getMonth() + 1).padStart(2, '0')
+            const year = date.getFullYear()
+            const today = day + '.' + month + '.' + year
+
             console.log(res.data.message)
 
-            dispatch({ action: 'isUserLoggedIn', payload: true })
+            dispatch({ action: 'SET_USERNAME', payload: email })
+            dispatch({ action: 'SET_USER_LOGGED', payload: true })
+            dispatch({ action: 'SET_LAST_ACTIVE', payload: today })
 
             Router.push('/dashboard')
           })
