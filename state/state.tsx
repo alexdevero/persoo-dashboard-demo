@@ -1,19 +1,12 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useReducer, useState } from 'react'
 
 interface appStateUI {
   children: React.ReactNode;
 }
 
-export const AppState = createContext({
-  username: '',
-  lastActive: '',
-  isDarkModeOn: false,
-  isUserLoggedIn: false,
-  isNavCollapsed: false,
-  handleAppStateChange: () => {}
-})
+export const GlobalState = createContext()
 
-const initialGlobalState = {
+const initialState = {
   username: '',
   lastActive: '',
   isDarkModeOn: false,
@@ -21,49 +14,45 @@ const initialGlobalState = {
   isNavCollapsed: false
 }
 
-function reducer(state, action) {
+const reducer = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case 'username':
       return {
         ...state,
-        username: action.value
+        username: action.payload
       }
     case 'lastActive':
       return {
         ...state,
-        lastActive: action.value
+        lastActive: action.payload
       }
     case 'isDarkModeOn':
       return {
         ...state,
-        isDarkModeOn: action.value
+        isDarkModeOn: action.payload
       }
     case 'isUserLoggedIn':
       return {
         ...state,
-        isUserLoggedIn: action.value
+        isUserLoggedIn: action.payload
       }
     case 'isNavCollapsed':
       return {
         ...state,
-        isNavCollapsed: action.value
+        isNavCollapsed: action.payload
       }
     default:
       return state
   }
 }
 
-
-  const handleAppStateChange = (prop: 'username' | 'lastActive' | 'darkMode', value: String) => {
-    setAppState({
-      ...appState,
-      [prop]: value
-    })
-  }
+export function AppStateProvider(props: appStateUI) {
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
-    <AppState.Provider value={{ appState, handleAppStateChange }}>
+    <GlobalState.Provider value={{ state, dispatch }}>
       {props.children}
-    </AppState.Provider>
+    </GlobalState.Provider>
   )
 }
