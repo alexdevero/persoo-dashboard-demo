@@ -1,9 +1,14 @@
+import { useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+
+import { GlobalState } from './../state/state'
 
 import styles from '../styles/Home.module.css'
 
 export default function Dashboard() {
+  const { state } = useContext(GlobalState)
+
   return (
     <div className={styles.container}>
       <Head>

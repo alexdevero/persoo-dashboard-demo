@@ -1,9 +1,16 @@
+import { useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
+// import { VerticalNav } from './../components/vertical-nav'
+
+import { GlobalState } from './../state/state'
+
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Index() {
+  const { state } = useContext(GlobalState)
+
   return (
     <div className={styles.container}>
       <Head>
